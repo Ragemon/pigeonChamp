@@ -1,4 +1,4 @@
-*.sqlit3
+*.sqlite3
 *.venv
 migrations/
 __pycache__/
