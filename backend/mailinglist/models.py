@@ -42,6 +42,9 @@ class Message(models.Model):
     started = models.DateTimeField(default=None, null=True)
     finished = models.DateTimeField(default=None, null=True)
 
+    def __str__(self) -> str:
+        return str(self.mailing_list) + ">> " + self.subject
+
 
 
 
