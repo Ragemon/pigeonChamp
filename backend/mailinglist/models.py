@@ -23,7 +23,7 @@ class MailingList(models.Model):
     
 
 class Subscriber(models.Model):
-    name = models.CharField(blank=True, null=True)
+    name = models.CharField(blank=True, null=True, max_length=100)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField()
     confirmed = models.BooleanField(default=False)
@@ -32,6 +32,15 @@ class Subscriber(models.Model):
 
     class Meta:
         unique_together = ['email', 'mailing_list',]
+
+
+class Message(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    mailing_list = models.ForeignKey(to=MailingList, on_delete=models.CASCADE)
+    subject = models.CharField(max_length=140)
+    body = models.TextField()
+    started = models.DateTimeField(default=None, null=True)
+    finished = models.DateTimeField(default=None, null=True)
 
 
 
