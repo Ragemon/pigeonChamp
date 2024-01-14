@@ -14,7 +14,7 @@ environ.Env.read_env(env_file)
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8qdw4@8=_+t!shzn-p^(rq=u+)*+w@5+(batsj0hmurl3ppy82'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -76,6 +76,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 if DEBUG:
+    SECRET_KEY = 'django-insecure-8qdw4@8=_+t!shzn-p^(rq=u+)*+w@5+(batsj0hmurl3ppy82'
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -84,6 +85,7 @@ if DEBUG:
     }
 else:
     print("In production mode")
+    SECRET_KEY = env("SECRET_KEY")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
